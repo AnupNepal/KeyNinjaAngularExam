@@ -1,20 +1,51 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container">
 
+<h1 class="page-header">{{ title }}</h1>
+
+<form  *ngIf="mapFormGroup" id="map-parameter" [formGroup]="mapFormGroup"  (ngSubmit)="refreshMap()">
+
+	<div class="form-inline">
+        <label for="Location1">Starting Location</label>
+        <input type="text" formControlName="Location1Lat" keyboardType="number" id="StartLang" class="form-control" value="-37.822066" placeholder="lattitude" />
+        <input type="text" formControlName="Location1Long" id="StartLong"  class="form-control"  value="144.963454" placeholder="longitude" />
+    </div>
+
+    <div class="way-point form-inline">
+        <label for="Location2">Route 1</label>
+        <input type="text" formControlName="Location2Lat" class="lat form-control"  value="-37.841936" placeholder="lattitude" />
+        <input type="text" formControlName="Location2Long" class="long form-control" value="144.935747" placeholder="longitude" />
+    </div>
+    <div class="way-point form-inline">
+        <label for="Location3">Route 2</label>
+        <input type="text" formControlName="Location3Lat" class="lat form-control" value="-37.803082" placeholder="lattitude" />
+        <input type="text" formControlName="Location3Long" class="long form-control" value="144.862707" placeholder="longitude" />
+    </div>
+    <div class="way-point form-inline">
+        <label for="Location4">Route 3</label>
+        <input type="text" formControlName="Location4Lat" class="lat form-control" value="-35.309049" placeholder="lattitude" />
+        <input type="text" formControlName="Location4Long" class="long form-control" value="149.108155" placeholder="longitude" />
+    </div>
+
+    <div class="form-inline">
+        <label for="Location5">End Location</label>
+        <input type="text" formControlName="Location5Lat" id="EndLang" class="form-control" value="-37.807772" placeholder="lattitude" />
+        <input type="text" formControlName="Location5Long" id="EndLong" class="form-control" value="145.059477" placeholder="longitude" />
+    </div>
+    <button type="submit"  id="Apply" class="btn btn-primary">Apply</button>
+
+</form>
+
+
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-direction [origin]="origin" [waypoints]="waypoints"  [destination]="destination">
+  </agm-direction>
+</agm-map>
+
+
+  
+  <hr />
+        <footer>
+            <p>Anup's Answer</p>
+        </footer>
+  </div>
